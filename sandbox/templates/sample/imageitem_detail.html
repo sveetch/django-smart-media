@@ -1,0 +1,22 @@
+{% extends "skeleton.html" %}
+{% load smart_image %}
+
+{% block content %}
+<div>
+    <h1>{{ imageitem_object.title }}</h1>
+
+    {% media_thumb imageitem_object.image "60x60" crop="center" as image_thumb %}
+    <p id="image">
+        <a href="{{ imageitem_object.image.url }}">
+            <img src="{{ image_thumb.url }}" alt="">
+        </a>
+    </p>
+
+    {% media_thumb imageitem_object.media "60x60" crop="center" as media_thumb %}
+    <p id="media">
+        <a href="{{ imageitem_object.media.url }}">
+            <img src="{{ media_thumb.url }}" alt="">
+        </a>
+    </p>
+</div>
+{% endblock content %}

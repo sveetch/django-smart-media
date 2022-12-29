@@ -1,0 +1,14 @@
+include MANIFEST.in
+include LICENCE.txt
+include README.rst
+
+exclude sphinx_reload.py
+
+recursive-include smart_media/templates *
+recursive-include smart_media/static *
+recursive-include smart_media/locale *
+
+recursive-exclude tests *
+recursive-exclude sandbox *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

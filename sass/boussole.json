@@ -1,0 +1,8 @@
+{
+    "SOURCES_PATH": "scss",
+    "TARGET_PATH": "../smart_media/static/smart_image/css",
+    "LIBRARY_PATHS": [],
+    "OUTPUT_STYLES": "expanded",
+    "SOURCE_COMMENTS": false,
+    "EXCLUDES": []
+}
