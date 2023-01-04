@@ -24,14 +24,7 @@ Then load default application settings in your settings file: ::
 
     from smart_media.settings import *
 
-Then mount applications URLs: ::
-
-    urlpatterns = [
-        ...
-        path("", include("smart_media.urls")),
-    ]
-
-And finally apply database migrations.
+There is no migration to apply.
 
 Settings
 ********

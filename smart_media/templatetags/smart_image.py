@@ -56,20 +56,20 @@ def media_thumb(source, geometry, *args, **kwargs):
             {% media_thumb instance.image "250x200" format="JPEG" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
-        Keep it in mind than do it will raise error with SVG image files (if you
+        Keep it in mind this will raise an error with SVG image files (if you
         allowed SVG format in plugins) since image libraries (like Pillow or
         ImageMagick) has no support for SVG.
 
-        Every argument but ``format`` is passed to Sorl, so like for cropping
-        image you can do : ::
+        Every argument but ``format`` is passed to Sorl, so for cropping an image you
+        can do : ::
 
             {% load smart_format %}
             {% media_thumb instance.image "250x200" crop="center" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
     Return:
-        sorl.thumbnail.images.ImageFile: Sorl ImageFile instance for created
-        thumb.
+        sorl.thumbnail.images.ImageFile or SvgFile: Either Sorl ImageFile instance for
+        created thumb or SvgFile which mimic Sorl ImageFile.
     """
     # Safe return when there is no source file
     # NOTE: Should trigger a warning log ?

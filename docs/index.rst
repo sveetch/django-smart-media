@@ -36,6 +36,9 @@ Concretely this contains:
 * CSS and Javascript for the widget layout;
 * Templates to build the widget HTML;
 
+Although this can work with ImageField, SVG support will only work with FileField since
+ImageField rely on PIL that does not support SVG format.
+
 
 Links
 *****
@@ -52,6 +55,7 @@ User’s Guide
    :maxdepth: 2
 
    install.rst
+   references.rst
 
 
 Developer’s Guide

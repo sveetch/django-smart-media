@@ -37,6 +37,22 @@ SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS = [
 Allowed image file extensions for image files.
 
 You should accord this list with setting ``SMART_FORMAT_AVAILABLE_FORMATS``.
+
+This is only used by ``SmartMediaField`` which implements ``FileExtensionValidator``
+with these extensions. You will need to add it yourself to your own fields if you only
+widgets: ::
+
+    class MyField(FileField):
+        widget = ClearableFileInputButton
+        default_validators = [
+            FileExtensionValidator(
+                allowed_extensions=settings.SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS
+            ),
+        ]
+
+However this won't work with ImageField since allowed extensions contains SVG that is
+not a supported image by PIL.
+
 """
 
 SMART_FORMAT_AVAILABLE_FORMATS = [
