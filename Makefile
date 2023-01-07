@@ -32,6 +32,7 @@ help:
 	@echo "  clean-pycache       -- to remove all __pycache__, this is recursive from current directory"
 	@echo
 	@echo "  run                 -- to run Django development server"
+	@echo "  migrations                    -- to create new migrations for application after changes"
 	@echo "  migrate             -- to apply demo database migrations"
 	@echo "  superuser           -- to create a superuser for Django admin"
 	@echo ""
@@ -41,6 +42,8 @@ help:
 	@echo "  docs                -- to build documentation"
 	@echo "  livedocs            -- to run livereload server to rebuild documentation on source changes"
 	@echo
+	@echo "  check-django        -- to run Django System check framework"
+	@echo "  check-migrations    -- to check for pending application migrations (do not write anything)"
 	@echo "  flake               -- to launch Flake8 checking"
 	@echo "  test                -- to launch base test suite using Pytest"
 	@echo "  test-initial        -- to launch tests with pytest and re-initialized database (for after new application or model changes)"
@@ -110,6 +113,13 @@ install: venv create-var-dirs
 	${MAKE} migrate
 .PHONY: install
 
+migrations:
+	@echo ""
+	@echo "==== Making application migrations for Sandbox sample app ===="
+	@echo ""
+	$(DJANGO_MANAGE) makemigrations sample
+.PHONY: migrations
+
 migrate:
 	@echo ""
 	@echo "==== Apply pending migrations ===="
@@ -161,6 +171,20 @@ livedocs:
 	@echo ""
 	$(SPHINX_RELOAD)
 .PHONY: livedocs
+
+check-django:
+	@echo ""
+	@echo "==== Running Django System check framework ===="
+	@echo ""
+	$(DJANGO_MANAGE) check
+.PHONY: check-django
+
+check-migrations:
+	@echo ""
+	@echo "==== Checking for pending project applications models migrations ===="
+	@echo ""
+	$(DJANGO_MANAGE) makemigrations --check --dry-run -v 3
+.PHONY: check-migrations
 
 flake:
 	@echo ""

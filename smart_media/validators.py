@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.validators import FileExtensionValidator
 from django.forms import ValidationError
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import gettext_lazy as _
@@ -28,3 +29,13 @@ def validate_file_size(data):
         ))
 
     return True
+
+
+class SmartMediaFileExtensionValidator(FileExtensionValidator):
+    """
+    TODO
+    """
+    def __init__(self, *args, **kwargs):
+        kwargs["allowed_extensions"] = settings.SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS
+
+        super().__init__(*args, **kwargs)

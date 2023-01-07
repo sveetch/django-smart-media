@@ -8,7 +8,7 @@
 Django smart media
 ==================
 
-A suit of tools to use a FileField to upload image with light SVG support, included
+A suit of tools to use a FileField to upload image with light SVG support, include
 thumbnail preview in field and a template tag around thumbnail libraries.
 
 

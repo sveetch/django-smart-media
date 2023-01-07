@@ -3,7 +3,21 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.urls import reverse
 
+from smart_media.modelfields import SmartMediaField
 from smart_media.mixins import SmartFormatMixin
+from smart_media.utils.file import uploadto_unique
+
+
+def cover_uploadto(instance, filename):
+    return uploadto_unique("sample/cover/%y/%m", instance, filename)
+
+
+def media_uploadto(instance, filename):
+    return uploadto_unique("sample/media/%y/%m", instance, filename)
+
+
+def image_uploadto(instance, filename):
+    return uploadto_unique("sample/image/%y/%m", instance, filename)
 
 
 class ImageItem(SmartFormatMixin, models.Model):
@@ -14,13 +28,22 @@ class ImageItem(SmartFormatMixin, models.Model):
         default="",
     )
 
-    media = models.FileField(
-        "media",
-        upload_to="sample/media/%y/%m",
+    cover = SmartMediaField(
+        "cover",
         max_length=255,
         null=True,
         blank=True,
         default=None,
+        upload_to=cover_uploadto,
+    )
+
+    media = models.FileField(
+        "media",
+        max_length=255,
+        null=True,
+        blank=True,
+        default=None,
+        upload_to=media_uploadto,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=settings.SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS
@@ -30,11 +53,11 @@ class ImageItem(SmartFormatMixin, models.Model):
 
     image = models.ImageField(
         "Image",
-        upload_to="sample/image/%y/%m",
         max_length=255,
         null=True,
         blank=True,
         default=None,
+        upload_to=image_uploadto,
     )
 
     def __str__(self):

@@ -15,6 +15,17 @@ class ImageItemFactory(factory.django.DjangoModelFactory):
         model = ImageItem
 
     @factory.lazy_attribute
+    def cover(self):
+        """
+        Fill file field with generated image.
+
+        Returns:
+            django.core.files.File: File object.
+        """
+
+        return create_image_file()
+
+    @factory.lazy_attribute
     def media(self):
         """
         Fill file field with generated image.

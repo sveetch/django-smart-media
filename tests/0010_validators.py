@@ -3,7 +3,8 @@ import pytest
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
-from smart_media.validators import validate_file_size
+from smart_media.utils.factories import create_image_file
+from smart_media.validators import SmartMediaFileExtensionValidator, validate_file_size
 
 
 class FakeFieldFile:
@@ -35,3 +36,36 @@ def test_validate_file_size_invalid():
     """
     with pytest.raises(ValidationError):
         validate_file_size(FakeFieldFile(settings.SMARTIMAGE_FILESIZE_LIMIT + 1))
+
+
+def test_extensionvalidator_valid():
+    """
+    Extension validation should let pass files with proper extensions according to
+    settings.
+    """
+    validator = SmartMediaFileExtensionValidator()
+
+    sample = create_image_file()
+
+    assert validator(sample) is None
+
+
+def test_extensionvalidator_invalid():
+    """
+    Extension validation should raise a validation error for files without proper
+    extensions.
+    """
+    validator = SmartMediaFileExtensionValidator()
+
+    sample = create_image_file(filename="foo.zip")
+
+    with pytest.raises(ValidationError) as exc_info:
+        validator(sample)
+
+    assert exc_info.value.messages == [
+        (
+            "File extension “zip” is not allowed. Allowed extensions are: jpg, jpeg, "
+            "svg, gif, png."
+        ),
+    ]
+
