@@ -7,6 +7,10 @@ from sandbox.sample.models import ImageItem
 
 
 class ImageItemAdminForm(forms.ModelForm):
+    """
+    A model form for 'ImageItem', we only need to set proper "smart" widget for
+    non-SmartMediaField fields.
+    """
     class Meta:
         model = ImageItem
         widgets = {
@@ -15,6 +19,7 @@ class ImageItemAdminForm(forms.ModelForm):
         }
         fields = [
             "title",
+            "cover",
             "media",
             "image",
         ]
@@ -22,6 +27,12 @@ class ImageItemAdminForm(forms.ModelForm):
 
 
 class ImageItemFieldsForm(forms.Form):
+    """
+    A basic form which directly set its form fields.
+
+    Since it is not a model form, we don't reproduce 'ImageItem.cover' (it would be
+    useless for demonstration).
+    """
     title = forms.CharField(label="Title", max_length=50, required=True)
     media = SmartMediaField(label="Media", required=False)
     image = SmartImageField(label="Image", required=False)

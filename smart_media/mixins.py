@@ -5,6 +5,27 @@ class SmartFormatMixin:
     """
     A mixin to inherit from a model so it will have a helper method to manage image
     formats.
+
+    Example:
+
+        You just have to inherit this class then define a method dedicated to your
+        field: ::
+
+            from django.db import models
+            from smart_media.modelfields import SmartMediaField
+
+            class MyModel(SmartFormatMixin, models.Model):
+                media = SmartMediaField(
+                    "media",
+                    max_length=255,
+                    null=True,
+                    blank=True,
+                    default=None,
+                    upload_to="sample/media/%y/%m",
+                )
+
+                def get_media_format(self):
+                    return self.media_format(self.media)
     """
 
     def media_format(self, mediafile):
@@ -12,17 +33,11 @@ class SmartFormatMixin:
         Common method to perform a naive check about image format using file
         extension.
 
-        This has been done for common image formats, so it will return either
-        'JPEG', 'PNG', 'SVG' or None if it does not match any of these formats.
+        Retrieved format will come from setting ``SMART_FORMAT_AVAILABLE_FORMATS``.
 
-        Obviously, since it use the file extension, found format is not to be
-        100% trusted. For sanity, media saving should validate it correctly
-        and possibly enforce the right file extension according to file format
-        found from file metas (like with the PIL method to get it).
-
-        At least the FileField should validate uploaded file is a valid image (except
-        for SVG). This method won't perform stronger validation since it may be widely
-        used in code and template and we don't want to open file again and again.
+        Obviously since it use the file extension, found format is not to be
+        100% trusted. You may think about validate your files strictly if strong
+        security is a matter for you and file upload is open to untrusted user.
 
         Arguments:
             mediafile (object): Either a FileField, ImageField or any other
@@ -31,7 +46,7 @@ class SmartFormatMixin:
 
         Return:
             string: Format name if filename extension match to any available
-            format extension, else ``None``.
+            format extension from available formats else it returns ``None``.
         """
         if mediafile:
             ext = mediafile.name.split(".")[-1].lower()

@@ -18,6 +18,15 @@ def test_imageitem_thumbs(db, client):
 
     dom = html_pyquery(response)
 
+    cover_link = dom.find("#cover a")[0]
+    assert cover_link.get("href").startswith(settings.MEDIA_URL) is True
+    assert cover_link.get("href").endswith(".png") is True
+
+    cover_img = cover_link.cssselect("img")[0]
+    assert cover_img.get("src") != cover_link.get("href")
+    assert cover_img.get("src").startswith(settings.MEDIA_URL) is True
+    assert cover_img.get("src").endswith(".png") is True
+
     media_link = dom.find("#media a")[0]
     assert media_link.get("href").startswith(settings.MEDIA_URL) is True
     assert media_link.get("href").endswith(".png") is True

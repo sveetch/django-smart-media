@@ -38,12 +38,14 @@ Allowed image file extensions for image files.
 
 You should accord this list with setting ``SMART_FORMAT_AVAILABLE_FORMATS``.
 
-This is only used by ``SmartMediaField`` which implements ``FileExtensionValidator``
-with these extensions. You will need to add it yourself to your own fields if you only
-widgets: ::
+This is used by ``SmartMediaField`` which includes ``SmartMediaFileExtensionValidator``
+that use this setting.
+
+However, you can also use it yourself to your own fields with Django validator
+``FileExtensionValidator``: ::
 
     class MyField(FileField):
-        widget = ClearableFileInputButton
+        ...
         default_validators = [
             FileExtensionValidator(
                 allowed_extensions=settings.SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS
@@ -69,5 +71,7 @@ This is a list of tuples such as ``(extension, name)``, where ``extension`` is
 a lowercase file extension (without leading dot) and ``name`` is the format name as
 expected from Sorl (excepted for SVG which does not goes through Sorl).
 
-You should accord this list with setting ``SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS``.
+You should accord this list with setting ``SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS``. All
+file fields that are used with template tag ``media_thumb`` must have a format
+registered in this setting.
 """
