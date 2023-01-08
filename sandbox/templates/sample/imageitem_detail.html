@@ -12,10 +12,17 @@
         </a>
     </p>
 
-    {% media_thumb imageitem_object.media "60x60" crop="center" as media_thumb %}
+    {% media_thumb imageitem_object.media "60x60" crop="center" as mediafield_thumb %}
     <p id="media">
         <a href="{{ imageitem_object.media.url }}">
-            <img src="{{ media_thumb.url }}" alt="">
+            <img src="{{ mediafield_thumb.url }}" alt="">
+        </a>
+    </p>
+
+    {% media_thumb imageitem_object.media "60x60" crop="center" as cover_thumb %}
+    <p id="cover">
+        <a href="{{ imageitem_object.cover.url }}">
+            <img src="{{ cover_thumb.url }}" alt="">
         </a>
     </p>
 </div>

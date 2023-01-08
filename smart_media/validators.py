@@ -33,7 +33,13 @@ def validate_file_size(data):
 
 class SmartMediaFileExtensionValidator(FileExtensionValidator):
     """
-    TODO
+    Customized ``FileExtensionValidator`` to directly get the allowed extension from
+    setting ``SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS``.
+
+    Since allowed extensions are embedded in code from settings, Django won't detect
+    any change model change when changing the setting and so won't create a migration.
+
+    Argument ``allowed_extensions`` is still accepted but is ignored.
     """
     def __init__(self, *args, **kwargs):
         kwargs["allowed_extensions"] = settings.SMARTIMAGE_ALLOWED_IMAGE_EXTENSIONS

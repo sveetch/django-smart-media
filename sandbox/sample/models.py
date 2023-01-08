@@ -8,8 +8,8 @@ from smart_media.mixins import SmartFormatMixin
 from smart_media.utils.file import uploadto_unique
 
 
-def cover_uploadto(instance, filename):
-    return uploadto_unique("sample/cover/%y/%m", instance, filename)
+#def cover_uploadto(instance, filename):
+    #return uploadto_unique("sample/cover/%y/%m", instance, filename)
 
 
 def media_uploadto(instance, filename):
@@ -34,7 +34,7 @@ class ImageItem(SmartFormatMixin, models.Model):
         null=True,
         blank=True,
         default=None,
-        upload_to=cover_uploadto,
+        upload_to="sample/cover/%y/%m",
     )
 
     media = models.FileField(

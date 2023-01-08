@@ -15,6 +15,7 @@ class ImageItemAdminForm(forms.ModelForm):
         }
         fields = [
             "title",
+            "cover",
             "media",
             "image",
         ]
@@ -22,6 +23,9 @@ class ImageItemAdminForm(forms.ModelForm):
 
 
 class ImageItemFieldsForm(forms.Form):
+    """
+    Since it is not a model form, we don't reproduce 'ImageItem.cover'.
+    """
     title = forms.CharField(label="Title", max_length=50, required=True)
     media = SmartMediaField(label="Media", required=False)
     image = SmartImageField(label="Image", required=False)
