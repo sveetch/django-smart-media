@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.core.files.utils import validate_file_name
 from django.db import models
 
@@ -12,7 +11,8 @@ class SmartMediaField(models.FileField):
     A model file field with every "smart" features.
 
     * Set the ``SmartMediaFileExtensionValidator`` validator;
-    * Use the form field ``SmartMediaField``;
+    * Use the form field ``SmartMediaField`` to get the proper "smart" clearable file
+      widget;
     * Generate filename as an unique UUID with ``uploadto_unique`` function;
 
     Usage is identical to the ``models.FileField``: ::
@@ -28,9 +28,10 @@ class SmartMediaField(models.FileField):
 
     .. Note::
 
-        If 'upload_to' is a callable the UUID behavior is disabled.
+        If attribute 'upload_to' value is a callable the UUID filename behavior is
+        disabled.
 
-    .. Note::
+    .. Warning::
 
         Django won't be able to detect change on settings. So you will have to create a
         custom data migration on your own if you want to clean files with previously

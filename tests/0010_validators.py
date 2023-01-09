@@ -68,4 +68,3 @@ def test_extensionvalidator_invalid():
             "svg, gif, png."
         ),
     ]
-

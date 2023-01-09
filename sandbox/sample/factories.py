@@ -7,7 +7,7 @@ from sandbox.sample.models import ImageItem
 
 class ImageItemFactory(factory.django.DjangoModelFactory):
     """
-    Factory to create instance of a ImageItem.
+    Factory to create instance of an ImageItem.
     """
     title = factory.Sequence(lambda n: "Image {0}".format(n))
 

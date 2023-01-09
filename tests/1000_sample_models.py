@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from django.core.exceptions import ValidationError
@@ -75,3 +77,59 @@ def test_factory_creation(db):
     """
     imageitem = ImageItemFactory(title="foo")
     assert imageitem.title == "foo"
+
+
+def test_article_model_file_purge(db):
+    """
+    Article 'cover' and 'image' field file should follow correct behaviors:
+
+    * When object is deleted, its files should be delete from filesystem too;
+    * When changing file from an object, its previous files (if any) should be
+      deleted;
+    """
+    ping = ImageItemFactory(
+        cover=create_image_file(filename="ping_cover_file.png"),
+        media=create_image_file(filename="ping_media_file.png"),
+        image=create_image_file(filename="ping_image_file.png"),
+    )
+    pong = ImageItemFactory(
+        cover=create_image_file(filename="pong_cover_file.png"),
+        media=create_image_file(filename="pong_media_file.png"),
+        image=create_image_file(filename="pong_image_file.png"),
+    )
+
+    # Memorize some data to use after deletion
+    ping_cover_path = ping.cover.path
+    ping_media_path = ping.media.path
+    ping_image_path = ping.image.path
+    pong_cover_path = pong.cover.path
+    pong_media_path = pong.media.path
+    pong_image_path = pong.image.path
+
+    # Delete object
+    ping.delete()
+
+    # Files are deleted along their object
+    assert Path(ping_cover_path).exists() is False
+    assert Path(ping_media_path).exists() is False
+    assert Path(ping_image_path).exists() is False
+    # Paranoiac mode: other existing similar filename (as uploaded) are conserved
+    # since Django rename file with a unique hash if filename alread exist, they
+    # should not be mistaken
+    assert Path(pong_cover_path).exists() is True
+
+    # TODO: once signal method is done
+    # Change object file to a new one
+    pong.cover = create_image_file(filename="new_cover.png")
+    pong.media = create_image_file(filename="new_media.png")
+    pong.image = create_image_file(filename="new_image.png")
+    pong.save()
+
+    # During pre save signal, old file is removed from FS and new one is left
+    # untouched
+    assert Path(pong_cover_path).exists() is False
+    assert Path(pong_media_path).exists() is False
+    assert Path(pong_image_path).exists() is False
+    assert Path(pong.cover.path).exists() is True
+    assert Path(pong.media.path).exists() is True
+    assert Path(pong.image.path).exists() is True
