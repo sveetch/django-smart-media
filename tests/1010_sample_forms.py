@@ -19,6 +19,10 @@ def test_imageitemadminform_empty():
     assert ("title" in form.errors) is True
     assert len(form.errors) == 1
 
+    assert str(form["cover"]).startswith('<div class="fileinputbutton">') is True
+    assert str(form["media"]).startswith('<div class="fileinputbutton">') is True
+    assert str(form["image"]).startswith('<div class="fileinputbutton">') is True
+
 
 def test_imageitemadminform_invalid_files(db):
     """
@@ -44,10 +48,6 @@ def test_imageitemadminform_invalid_files(db):
         ),
         "image": "nope",
     })
-
-    assert str(form["cover"]).startswith('<div class="fileinputbutton">') is True
-    assert str(form["media"]).startswith('<div class="fileinputbutton">') is True
-    assert str(form["image"]).startswith('<div class="fileinputbutton">') is True
 
     assert form.is_valid() is False
     assert ("cover" in form.errors) is True

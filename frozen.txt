@@ -1,8 +1,9 @@
-# Frozen requirement versions from '0.1.0' installation
+# Frozen requirement versions from '0.2.0rc3' installation
 boussole==2.0.0
 Django==4.1.4
 factory-boy==3.2.1
 flake8==6.0.0
+freezegun==1.2.2
 livereload==2.6.3
 Pillow==9.3.0
 pyquery==2.0.0

@@ -1,11 +1,13 @@
 from django.contrib import admin
 
-from sandbox.sample.models import ImageItem
+from smart_media.admin import SmartModelAdmin
+
 from sandbox.sample.forms import ImageItemAdminForm
+from sandbox.sample.models import ImageItem
 
 
 @admin.register(ImageItem)
-class ImageItemAdmin(admin.ModelAdmin):
+class ImageItemAdmin(SmartModelAdmin):
     """
     Admin view for 'ImageItem', we need to set the model form where we define the
     proper widgets.

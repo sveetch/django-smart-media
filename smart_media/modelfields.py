@@ -31,6 +31,13 @@ class SmartMediaField(models.FileField):
         If attribute 'upload_to' value is a callable the UUID filename behavior is
         disabled.
 
+    .. Note::
+
+        Sadly this just won't work on its own in Django admin which makes some internal
+        resolutions between model fields and widgets. So you will need to define a rule
+        to get the right widget for this field, see
+        ``smart_media.admin.SmartModelAdmin``.
+
     .. Warning::
 
         Django won't be able to detect change on settings. So you will have to create a
@@ -44,7 +51,8 @@ class SmartMediaField(models.FileField):
 
     def generate_filename(self, instance, filename):
         """
-        Override default FileField method to use UUID for filename.
+        Override ``FileField.generate_filename()`` to change original uploaded filename
+        to an UUID.
 
         'upload_to' date pattern is still properly formatted and the UUID behavior is
         ignored if 'upload_to' is a callable.
