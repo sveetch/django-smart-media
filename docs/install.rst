@@ -10,6 +10,7 @@ Install package in your environment : ::
 
 For development usage see :ref:`install_development`.
 
+
 Configuration
 *************
 
@@ -17,6 +18,7 @@ Add it to your installed Django apps in settings : ::
 
     INSTALLED_APPS = (
         ...
+        "sorl.thumbnail",
         "smart_media",
     )
 
@@ -24,7 +26,8 @@ Then load default application settings in your settings file: ::
 
     from smart_media.settings import *
 
-There is no migration to apply.
+There is no migration to apply for this application.
+
 
 Settings
 ********

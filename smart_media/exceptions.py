@@ -1,11 +1,3 @@
-"""
-Exceptions
-==========
-
-Specific application exceptions.
-"""
-
-
 class SmartImageBaseException(Exception):
     """
     Base for every SmartFormat template tag exceptions.

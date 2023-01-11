@@ -7,7 +7,7 @@ Django smart media
 ==================
 
 A suit of tools to use a FileField to upload image with light SVG support, include
-thumbnail preview in field and a template tag around thumbnail libraries.
+thumbnail preview in field and a template tag around `sorl-thumbnail`_ library.
 
 
 Dependancies
@@ -23,19 +23,23 @@ Overview
 
 Concretely this contains:
 
-* Form widgets to build HTML for a FileField either with or without clearable
+* Form widgets to build HTML for a ``FileField`` either with or without clearable
   mode. Both mode have a version to include needed layout assets (CSS and Javascript)
   and another one without assets;
-* Form fields which already use the included widgets;
+* Templates to build the widgets HTML;
+* CSS and Javascript for the widget layout;
+* Form fields which already set a "smart" widget;
+* Field validator;
+* Model signals to purge stale files;
+* Model field with all "smart" features;
 * A template tag to make a thumbnail that can be used either in the form for preview
   or to be used in frontend for content thumbnail. By default, the thumbnail is
   made in the original content format. Also not than a SVG cannot be converted to a
   Bitmap and vice versa;
-* CSS and Javascript for the widget layout;
-* Templates to build the widget HTML;
+* Some helpers to ease some specific implementations;
 
-Although this can work with ImageField, SVG support will only work with FileField since
-ImageField rely on PIL that does not support SVG format.
+Although this can work with ``ImageField``, SVG support will only work with
+``FileField`` since ``ImageField`` rely on PIL that does not support SVG format.
 
 
 Links

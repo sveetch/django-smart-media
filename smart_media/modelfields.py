@@ -15,21 +15,23 @@ class SmartMediaField(models.FileField):
       widget;
     * Generate filename as an unique UUID with ``uploadto_unique`` function;
 
-    Usage is identical to the ``models.FileField``: ::
+    Example:
 
-        cover = SmartMediaField(
-            "cover",
-            max_length=255,
-            null=True,
-            blank=True,
-            default=None,
-            upload_to="sample/cover/%y/%m",
-        )
+        Usage is identical to a ``models.FileField``: ::
+
+            cover = SmartMediaField(
+                "cover",
+                max_length=255,
+                null=True,
+                blank=True,
+                default=None,
+                upload_to="sample/cover/%y/%m",
+            )
 
     .. Note::
 
-        If attribute 'upload_to' value is a callable the UUID filename behavior is
-        disabled.
+        If attribute ``upload_to`` value is a callable then the UUID filename behavior
+        is disabled.
 
     .. Note::
 

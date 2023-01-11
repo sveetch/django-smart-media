@@ -7,15 +7,14 @@ class FileInputButtonBase(FileInput):
 
     The base version does not include the required medias so you can include
     them yourself in your form controler, this is a good idea in some
-    environment like DjangoCMS which needs to use a lot of "!important" marks
-    to override the admin stylesheets, which are not part of this widget
-    stylesheets.
+    environment like DjangoCMS which needs to use a lot of ``!important`` marks
+    to override the admin stylesheets and is not included from this widget stylesheets.
 
-    Default behavior if not "class" attribute is given is to apply the CSS
-    classname "fileinputbutton__input" to the input.
+    Default behavior if no ``class`` attribute is given is to apply the CSS
+    classname ``fileinputbutton__input`` to the input.
 
     .. Note::
-        When your input file enable the "multiple" attribute to accept more
+        When your input file enable the ``multiple`` attribute to accept more
         than one file, label input will be rendered to a default string like
         "4 files" which is not translatable (this is done in the Javascript
         source).
@@ -40,7 +39,7 @@ class FileInputButtonBase(FileInput):
 
 class ClearableFileInputButtonBase(ClearableFileInput):
     """
-    Alike "FileInputButtonBase" but to extend the clearable file input.
+    Alike ``FileInputButtonBase`` but to extend with the additional clear checkbox.
 
     This won't support the "multiple" input file feature.
     """
@@ -55,7 +54,7 @@ class ClearableFileInputButtonBase(ClearableFileInput):
 
 class FileInputButton(FileInputButtonBase):
     """
-    FileInputButtonBase version which includes the required assets to customize
+    ``FileInputButtonBase`` version which includes the required assets to customize
     its layout and turn the file input as a button.
     """
     class Media:
@@ -67,7 +66,7 @@ class FileInputButton(FileInputButtonBase):
 
 class ClearableFileInputButton(ClearableFileInputButtonBase):
     """
-    ClearableFileInputButtonBase version which includes the required assets to
+    ``ClearableFileInputButtonBase`` version which includes the required assets to
     customize its layout and turn the file input as a button.
     """
     class Media:

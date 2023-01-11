@@ -8,24 +8,32 @@ def auto_purge_files_on_delete(fieldnames):
     Return a callable to set as a signal receiver to purge related files from deleted
     object.
 
+    When connected to your model, just before an object is deleted the signal check
+    defined fields for their files and remove them from your Filesystem so you won't
+    keep files from object that do not exists anymore.
+
     This is to be used with signal ``django.db.models.signals.post_delete`` and since
     this work with shallow function you will need to set ``weak=False`` on signal
-    ``connect`` method.
+    method ``connect``.
 
-    Usage example: ::
-        from django.db import models
-        from django.db.models.signals import post_delete
-        from smart_media.signals import auto_purge_files_on_delete
+    Example:
 
-        class MyModel(models.Model):
-            cover = models.FileField(...)
+        Commonly you connect signal in your models file and define a list of fields to
+        watch for purge: ::
 
-        post_delete.connect(
-            auto_purge_files_on_delete(["cover"]),
-            dispatch_uid="mymodels_files_on_delete",
-            sender=MyModel,
-            weak=False,
-        )
+            from django.db import models
+            from django.db.models.signals import post_delete
+            from smart_media.signals import auto_purge_files_on_delete
+
+            class MyModel(models.Model):
+                cover = models.FileField(...)
+
+            post_delete.connect(
+                auto_purge_files_on_delete(["cover"]),
+                dispatch_uid="mymodels_files_on_delete",
+                sender=MyModel,
+                weak=False,
+            )
 
     Remember to set an unique key name to argument ``dispatch_uid``.
 
@@ -66,29 +74,38 @@ def auto_purge_files_on_change(fieldnames):
     Return a callable to set as a signal receiver to purge old related files for a
     modified object with new uploaded files.
 
+    When connected to your model, just before an existing object is saved the signal
+    check defined fields for their current files, if a current file is different than
+    the one from the changes, it is removed from your Filesystem so you won't
+    keep files that have been deleted or changed.
+
     It is safe if old file does not exists anymore.
 
     This is to be used with signal ``django.db.models.signals.pre_save`` and since
     this work with shallow function you will need to set ``weak=False`` on signal
-    ``connect`` method.
+    method ``connect``.
 
     This receiver perform an additional get queryset on object to get its previous
     value just before current save.
 
-    Usage example: ::
-        from django.db import models
-        from django.db.models.signals import pre_save
-        from smart_media.signals import auto_purge_files_on_change
+    Example:
 
-        class MyModel(models.Model):
-            cover = models.FileField(...)
+        Commonly you connect signal in your models file and define a list of fields to
+        watch for purge: ::
 
-        pre_save.connect(
-            auto_purge_files_on_change(["cover"]),
-            dispatch_uid="mymodels_files_on_change",
-            sender=MyModel,
-            weak=False,
-        )
+            from django.db import models
+            from django.db.models.signals import pre_save
+            from smart_media.signals import auto_purge_files_on_change
+
+            class MyModel(models.Model):
+                cover = models.FileField(...)
+
+            pre_save.connect(
+                auto_purge_files_on_change(["cover"]),
+                dispatch_uid="mymodels_files_on_change",
+                sender=MyModel,
+                weak=False,
+            )
 
     Remember to set an unique key name to argument ``dispatch_uid``.
 

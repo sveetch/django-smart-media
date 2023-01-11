@@ -6,7 +6,7 @@ from .widgets import ClearableFileInputButton
 
 class SmartModelAdmin(django_admin.ModelAdmin):
     """
-    Model admin override to include the right widget definition for model field
+    A model admin class to include the right widget definition for model field
     ``modelfields.SmartMediaField``.
 
     This is required because ModelAdmin translate model field to widgets using a list
@@ -18,6 +18,21 @@ class SmartModelAdmin(django_admin.ModelAdmin):
     ``SmartModelAdmin.formfield_overrides`` into it.
 
     It is only required with model forms in Django admin.
+
+    Example:
+
+        Your model admin just have to inherit from this class: ::
+
+            from django.contrib import admin
+            from smart_media.admin import SmartModelAdmin
+            from myapp.models import MyModel
+
+            @admin.register(MyModel)
+            class MyModelAdmin(SmartModelAdmin):
+                ...
+
+    Or copy the source of ``SmartModelAdmin.formfield_overrides`` (see source) into
+    your own model admin.
     """
     formfield_overrides = {
         SmartMediaField: {
