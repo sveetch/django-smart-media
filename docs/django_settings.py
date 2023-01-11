@@ -155,7 +155,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "smart_media.apps.smart_mediaConfig",
-    "sandbox.sample",
 ]
 
 
