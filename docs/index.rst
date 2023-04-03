@@ -1,7 +1,3 @@
-.. _Python: https://www.python.org/
-.. _Django: https://www.djangoproject.com/
-.. _sorl-thumbnail: https://github.com/jazzband/sorl-thumbnail
-
 .. django-smart-media documentation master file, created by David Thenon
 
 .. include:: ../README.rst
