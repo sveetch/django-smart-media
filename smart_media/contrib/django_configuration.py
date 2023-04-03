@@ -4,6 +4,7 @@ from ..settings import (
     SMART_FORMAT_AVAILABLE_FORMATS,
 )
 
+
 class SmartMediaDefaultSettings:
     """
     Default "Django smart media" settings class to use with a "django-configuration"

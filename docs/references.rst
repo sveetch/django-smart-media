@@ -132,3 +132,14 @@ Application parts may raise specific exceptions, it may be helpful to recognize 
 
 .. automodule:: smart_media.exceptions
    :members:
+
+
+.. _references_contrib:
+
+Optional contributions
+**********************
+
+There you could find some useful optional contributions for some feature or packages.
+
+.. automodule:: smart_media.contrib.django_configuration
+   :members:

@@ -10,7 +10,8 @@ Version 0.2.2 - Unreleased
 * Added ``smart_media.contrib.django_configuration.SmartMediaDefaultSettings`` class to
   use with  `django-configuration <https://django-configurations.readthedocs.io/en/stable/>`_
   to include default settings instead of ``from smart_media.settings import *``;
-
+* Improved installation document;
+* Fixed some typos from docstrings;
 
 
 Version 0.2.1 - 2023/01/11

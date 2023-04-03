@@ -12,6 +12,7 @@ class SmartFormatMixin:
         field: ::
 
             from django.db import models
+            from smart_media.mixins import SmartFormatMixin
             from smart_media.modelfields import SmartMediaField
 
             class MyModel(SmartFormatMixin, models.Model):

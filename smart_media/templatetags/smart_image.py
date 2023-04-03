@@ -46,13 +46,13 @@ def media_thumb(source, geometry, *args, **kwargs):
         The most basic usage is to define only thumbnail geometry in default
         "auto" format mode: ::
 
-            {% load smart_format %}
+            {% load smart_image %}
             {% media_thumb instance.image "250x200" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
         You can also enforce a specific format: ::
 
-            {% load smart_format %}
+            {% load smart_image %}
             {% media_thumb instance.image "250x200" format="JPEG" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
@@ -63,7 +63,7 @@ def media_thumb(source, geometry, *args, **kwargs):
         Every argument but ``format`` is passed to Sorl, so for cropping an image you
         can do : ::
 
-            {% load smart_format %}
+            {% load smart_image %}
             {% media_thumb instance.image "250x200" crop="center" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
