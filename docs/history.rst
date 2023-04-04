@@ -4,7 +4,7 @@
 History
 =======
 
-Version 0.2.2 - Unreleased
+Version 0.2.2 - 2023/04/04
 --------------------------
 
 * Added ``smart_media.contrib.django_configuration.SmartMediaDefaultSettings`` class to
