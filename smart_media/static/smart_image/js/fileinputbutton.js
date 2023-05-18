@@ -24,13 +24,6 @@
  * - When input is focused, a classname "has-focus" is added;
  * - When one or more files are selected, a classname "has-selection" is added;
  *
- * Original source has been enclosed into jQuery "on ready" function since medias from
- * a form are always loaded in the header and so we need to prevent executing this code
- * before the DOM is ready.
- *
- * This is safe in Django context since jQuery is alread loaded but won't work in
- * frontends without jQuery.
- *
  * Original credits:
  *
  * By Osvaldas Valutis, www.osvaldas.info
@@ -39,7 +32,7 @@
  * From: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/
 */
 
-$(function($) {
+window.addEventListener('DOMContentLoaded', function () {
     var inputs = document.querySelectorAll('.fileinputbutton__input');
     Array.prototype.forEach.call(inputs, function(input) {
         var label = input.nextElementSibling,
@@ -70,4 +63,4 @@ $(function($) {
             input.classList.remove('has-focus');
         });
     });
-});
+}, false);

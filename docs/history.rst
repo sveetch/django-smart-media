@@ -10,7 +10,8 @@ Version 0.3.0 - Unreleased
 * Added missing link to Sorl documentation in tag docstring, close #5;
 * Fixed invisible thumb for SVG file in preview from ``FileInputButtonBase`` widget,
   close #9;
-
+* Removed last jQuery usage from Javascript code so it is full vanilla Javascript and
+  it is compatible anywhere, close #1;
 
 Version 0.2.2 - 2023/04/04
 --------------------------
