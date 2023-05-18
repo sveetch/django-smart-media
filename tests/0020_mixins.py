@@ -60,8 +60,6 @@ def test_validate_file_size_success_under(filename, expected):
     """
     mixin = SmartFormatMixin()
 
-    dummy = None
-    if filename:
-        dummy = DummyFile(filename)
+    dummy = DummyFile(filename) if filename else None
 
     assert expected == mixin.media_format(dummy)
