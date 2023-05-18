@@ -91,6 +91,10 @@
   margin: 0 auto;
 }
 
+.fileinputbutton.fileinputbutton--has-preview .fileinputbutton__preview a img[src$=".svg"] {
+  width: 3.75rem;
+}
+
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__controls {
   flex-grow: 1;
   flex-shrink: 0;

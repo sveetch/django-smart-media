@@ -1,4 +1,5 @@
 @import '../tools/flexbox';
+@import '../tools/rem';
 
 //
 // Mixin for base simple fileinputbutton layout
@@ -131,6 +132,10 @@
                 img {
                     display: inline-block $important-mark;
                     margin: 0 auto $important-mark;
+
+                    &[src$=".svg"] {
+                        width: rem-calc(60px);
+                    }
                 }
             }
         }

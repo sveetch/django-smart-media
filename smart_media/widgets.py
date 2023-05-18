@@ -31,7 +31,7 @@ class FileInputButtonBase(FileInput):
     template_name = "smart_image/fileinputbutton_basic.html"
 
     def __init__(self, attrs=None):
-        default_attrs = {'class': 'fileinputbutton__input'}
+        default_attrs = {"class": "fileinputbutton__input"}
         if attrs:
             default_attrs.update(attrs)
         super().__init__(default_attrs)
@@ -46,7 +46,7 @@ class ClearableFileInputButtonBase(ClearableFileInput):
     template_name = "smart_image/fileinputbutton_clearable.html"
 
     def __init__(self, attrs=None):
-        default_attrs = {'class': 'fileinputbutton__input'}
+        default_attrs = {"class": "fileinputbutton__input"}
         if attrs:
             default_attrs.update(attrs)
         super().__init__(default_attrs)
