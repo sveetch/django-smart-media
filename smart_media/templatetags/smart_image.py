@@ -15,8 +15,11 @@ register = template.Library()
 @register.simple_tag
 def media_thumb(source, geometry, *args, **kwargs):
     """
+
     Determine the right format and return the Sorl thumb file url path for
     given image file.
+
+    .. _Sorl: https://github.com/jazzband/sorl-thumbnail
 
     Arguments:
         source (object): Either a FileField or an ImageField.
@@ -24,7 +27,7 @@ def media_thumb(source, geometry, *args, **kwargs):
             something like ``200`` for 200px width and automatic height or
             ``200x100`` for 200px width and 100px height.
         *args: Not used, there is no other expected positionnal arguments.
-        **kwargs: Keyword arguments are passed to Sorl, watch its documentation
+        **kwargs: Keyword arguments are passed to `Sorl`_, watch its documentation
             for more details.
 
     Keyword Arguments:

@@ -115,9 +115,9 @@ install: venv create-var-dirs
 
 migrations:
 	@echo ""
-	@echo "==== Making application migrations for Sandbox sample app ===="
+	@echo "==== Making application migrations for application ===="
 	@echo ""
-	$(DJANGO_MANAGE) makemigrations sample
+	$(DJANGO_MANAGE) makemigrations $(APPLICATION_NAME)
 .PHONY: migrations
 
 migrate:

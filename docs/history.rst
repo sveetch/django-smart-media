@@ -4,6 +4,12 @@
 History
 =======
 
+Version 0.3.0 - Unreleased
+--------------------------
+
+* Added missing link to Sorl documentation in tag docstring, close #5;
+
+
 Version 0.2.2 - 2023/04/04
 --------------------------
 
