@@ -12,9 +12,9 @@ from smart_media.validators import SmartMediaFileExtensionValidator
 
 def media_uploadto(instance, filename):
     """
-    upload_to helper dedicated to field 'media'
+    upload_to helper dedicated to field 'mediafile'
     """
-    return uploadto_unique("sample/media/%y/%m", instance, filename)
+    return uploadto_unique("sample/mediafile/%y/%m", instance, filename)
 
 
 def image_uploadto(instance, filename):
@@ -40,10 +40,11 @@ class ImageItem(SmartFormatMixin, models.Model):
         blank=True,
         default=None,
         upload_to="sample/cover/%y/%m",
+        help_text="Implemented with SmartMediaField",
     )
 
     # A basic FileField with the 'upload_to' helper and file extension validator
-    media = models.FileField(
+    mediafile = models.FileField(
         "media",
         max_length=255,
         null=True,
@@ -53,6 +54,7 @@ class ImageItem(SmartFormatMixin, models.Model):
         validators=[
             SmartMediaFileExtensionValidator(),
         ],
+        help_text="Implemented with models.FileField and SmartMediaFileExtensionValidator",
     )
 
     # A basic ImageField which only use the 'upload_to' helper
@@ -63,19 +65,20 @@ class ImageItem(SmartFormatMixin, models.Model):
         blank=True,
         default=None,
         upload_to=image_uploadto,
+        help_text="Implemented with ImageField (SVG is not allowed)",
     )
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("imageitem-detail", args=[
+        return reverse("sample:imageitem-detail", args=[
             str(self.id)
         ])
 
     # Media format helpers (depends from SmartFormatMixin inheritance)
     def get_media_format(self):
-        return self.media_format(self.media)
+        return self.media_format(self.mediafile)
 
     def get_image_format(self):
         return self.media_format(self.image)
@@ -87,14 +90,14 @@ class ImageItem(SmartFormatMixin, models.Model):
 
 # Connect signals for automatic file purge
 post_delete.connect(
-    auto_purge_files_on_delete(["cover", "media", "image"]),
+    auto_purge_files_on_delete(["cover", "mediafile", "image"]),
     dispatch_uid="imageitem_files_on_delete",
     sender=ImageItem,
     weak=False,
 )
 
 pre_save.connect(
-    auto_purge_files_on_change(["cover", "media", "image"]),
+    auto_purge_files_on_change(["cover", "mediafile", "image"]),
     dispatch_uid="imageitem_files_on_change",
     sender=ImageItem,
     weak=False,

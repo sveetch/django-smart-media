@@ -1,5 +1,6 @@
 {% extends "skeleton.html" %}
 {% load smart_image %}
+{% block header-title %}{{ block.super }} - {{ imageitem_object.title }}{% endblock header-title %}
 
 {% block content %}
 <div>
@@ -12,14 +13,14 @@
         </a>
     </p>
 
-    {% media_thumb imageitem_object.media "60x60" crop="center" as mediafield_thumb %}
-    <p id="media">
-        <a href="{{ imageitem_object.media.url }}">
+    {% media_thumb imageitem_object.mediafile "60x60" crop="center" as mediafield_thumb %}
+    <p id="mediafile">
+        <a href="{{ imageitem_object.mediafile.url }}">
             <img src="{{ mediafield_thumb.url }}" alt="">
         </a>
     </p>
 
-    {% media_thumb imageitem_object.media "60x60" crop="center" as cover_thumb %}
+    {% media_thumb imageitem_object.cover "60x60" crop="center" as cover_thumb %}
     <p id="cover">
         <a href="{{ imageitem_object.cover.url }}">
             <img src="{{ cover_thumb.url }}" alt="">

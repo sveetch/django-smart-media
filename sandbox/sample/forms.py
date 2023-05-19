@@ -14,13 +14,13 @@ class ImageItemAdminForm(forms.ModelForm):
     class Meta:
         model = ImageItem
         widgets = {
-            "media": ClearableFileInputButton,
+            "mediafile": ClearableFileInputButton,
             "image": ClearableFileInputButton,
         }
         fields = [
             "title",
             "cover",
-            "media",
+            "mediafile",
             "image",
         ]
         exclude = []
@@ -30,11 +30,10 @@ class ImageItemFieldsForm(forms.Form):
     """
     A basic form which directly set its form fields.
 
-    Since it is not a model form, we don't reproduce 'ImageItem.cover' (it would be
-    useless for demonstration).
+    This does not implement any data save.
     """
     title = forms.CharField(label="Title", max_length=50, required=True)
-    media = SmartMediaField(label="Media", required=False)
+    mediafile = SmartMediaField(label="Media", required=False)
     image = SmartImageField(label="Image", required=False)
 
     def save(self, *args, **kwargs):

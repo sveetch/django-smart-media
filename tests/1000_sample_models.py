@@ -43,7 +43,7 @@ def test_model_required_fields(db):
 
 def test_model_fields_validator(db):
     """
-    Extensions validator from 'cover' and 'media' should raise an error for invalid
+    Extensions validator from 'cover' and 'mediafile' should raise an error for invalid
     file extension.
 
     'image' field is ignored since this is a ImageField which make validation on image
@@ -54,7 +54,7 @@ def test_model_fields_validator(db):
     imageitem = ImageItem(
         title="Foo",
         cover=sample,
-        media=sample,
+        mediafile=sample,
     )
     with pytest.raises(ValidationError) as exc_info:
         imageitem.full_clean()
@@ -64,7 +64,7 @@ def test_model_fields_validator(db):
             "File extension “zip” is not allowed. Allowed extensions are: jpg, jpeg, "
             "svg, gif, png."
         )],
-        "media": [(
+        "mediafile": [(
             "File extension “zip” is not allowed. Allowed extensions are: jpg, jpeg, "
             "svg, gif, png."
         )],
@@ -89,21 +89,21 @@ def test_article_model_file_purge(db):
     """
     ping = ImageItemFactory(
         cover=create_image_file(filename="ping_cover_file.png"),
-        media=create_image_file(filename="ping_media_file.png"),
+        mediafile=create_image_file(filename="ping_media_file.png"),
         image=create_image_file(filename="ping_image_file.png"),
     )
     pong = ImageItemFactory(
         cover=create_image_file(filename="pong_cover_file.png"),
-        media=create_image_file(filename="pong_media_file.png"),
+        mediafile=create_image_file(filename="pong_media_file.png"),
         image=create_image_file(filename="pong_image_file.png"),
     )
 
     # Memorize some data to use after deletion
     ping_cover_path = ping.cover.path
-    ping_media_path = ping.media.path
+    ping_media_path = ping.mediafile.path
     ping_image_path = ping.image.path
     pong_cover_path = pong.cover.path
-    pong_media_path = pong.media.path
+    pong_media_path = pong.mediafile.path
     pong_image_path = pong.image.path
 
     # Delete object
@@ -118,10 +118,9 @@ def test_article_model_file_purge(db):
     # should not be mistaken
     assert Path(pong_cover_path).exists() is True
 
-    # TODO: once signal method is done
     # Change object file to a new one
     pong.cover = create_image_file(filename="new_cover.png")
-    pong.media = create_image_file(filename="new_media.png")
+    pong.mediafile = create_image_file(filename="new_media.png")
     pong.image = create_image_file(filename="new_image.png")
     pong.save()
 
@@ -131,5 +130,5 @@ def test_article_model_file_purge(db):
     assert Path(pong_media_path).exists() is False
     assert Path(pong_image_path).exists() is False
     assert Path(pong.cover.path).exists() is True
-    assert Path(pong.media.path).exists() is True
+    assert Path(pong.mediafile.path).exists() is True
     assert Path(pong.image.path).exists() is True

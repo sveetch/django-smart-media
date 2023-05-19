@@ -26,7 +26,7 @@ class ImageItemFactory(factory.django.DjangoModelFactory):
         return create_image_file()
 
     @factory.lazy_attribute
-    def media(self):
+    def mediafile(self):
         """
         Fill file field with generated image.
 

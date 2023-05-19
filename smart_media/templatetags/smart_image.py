@@ -70,6 +70,8 @@ def media_thumb(source, geometry, *args, **kwargs):
             {% media_thumb instance.image "250x200" crop="center" as thumb %}
             <img src="{{ thumb.url }}" alt="">
 
+        Again, see `Sorl`_ documentation to know about available options.
+
     Return:
         sorl.thumbnail.images.ImageFile or SvgFile: Either Sorl ImageFile instance for
         created thumb or SvgFile which mimic Sorl ImageFile.

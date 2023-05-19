@@ -9,6 +9,26 @@ from sandbox.sample.factories import ImageItemFactory
 from sandbox.sample.forms import ImageItemAdminForm, ImageItemFieldsForm
 
 
+def test_imageitemadminform_initial():
+    """
+    Form should have the HTML fields and form medias as expected.
+    """
+    form = ImageItemAdminForm({})
+
+    assert str(form["cover"]).startswith("<div class=\"fileinputbutton\">") is True
+    assert str(form["mediafile"]).startswith("<div class=\"fileinputbutton\">") is True
+    assert str(form["image"]).startswith("<div class=\"fileinputbutton\">") is True
+
+    assert form.media._css_lists == [
+        {},
+        {"all": ("smart_image/css/fileinputbutton.css",)},
+    ]
+    assert form.media._js_lists == [
+        [],
+        ("smart_image/js/fileinputbutton.js",),
+    ]
+
+
 def test_imageitemadminform_empty():
     """
     Form should not be valid with missing required fields.
@@ -18,10 +38,6 @@ def test_imageitemadminform_empty():
     assert form.is_valid() is False
     assert ("title" in form.errors) is True
     assert len(form.errors) == 1
-
-    assert str(form["cover"]).startswith('<div class="fileinputbutton">') is True
-    assert str(form["media"]).startswith('<div class="fileinputbutton">') is True
-    assert str(form["image"]).startswith('<div class="fileinputbutton">') is True
 
 
 def test_imageitemadminform_invalid_files(db):
@@ -41,7 +57,7 @@ def test_imageitemadminform_invalid_files(db):
             DUMMY_GIF_BYTES,
             content_type="image/gif"
         ),
-        "media": SimpleUploadedFile(
+        "mediafile": SimpleUploadedFile(
             "small.zip",
             DUMMY_GIF_BYTES,
             content_type="image/gif"
@@ -51,7 +67,7 @@ def test_imageitemadminform_invalid_files(db):
 
     assert form.is_valid() is False
     assert ("cover" in form.errors) is True
-    assert ("media" in form.errors) is True
+    assert ("mediafile" in form.errors) is True
     assert ("image" in form.errors) is True
     assert len(form.errors) == 3
 
@@ -72,7 +88,7 @@ def test_imageitemadminform_success(db):
     # uniqueness on this model and factoryboy build create strategy is simpler to use
     item = ImageItemFactory(
         cover=cover_file,
-        media=media_file,
+        mediafile=media_file,
         image=image_file,
     )
 
@@ -80,7 +96,7 @@ def test_imageitemadminform_success(db):
         "title": item.title,
     }, {
         "cover": item.cover,
-        "media": item.media,
+        "mediafile": item.mediafile,
         "image": item.image,
     })
 
@@ -97,9 +113,9 @@ def test_imageitemadminform_success(db):
     assert cover_filename.startswith("cover_file") is False
     assert cover_filename.endswith(".png") is True
 
-    # 'media' FileField set the 'upload_to' helper for UUID filename
-    media_filename = Path(item_instance.media.name).name
-    assert item_instance.media.name.startswith("sample/media/") is True
+    # 'mediafile' FileField set the 'upload_to' helper for UUID filename
+    media_filename = Path(item_instance.mediafile.name).name
+    assert item_instance.mediafile.name.startswith("sample/mediafile/") is True
     assert media_filename.startswith("media_file") is False
     assert media_filename.endswith(".png") is True
 
@@ -108,6 +124,25 @@ def test_imageitemadminform_success(db):
     assert item_instance.image.name.startswith("sample/image/") is True
     assert image_filename.startswith("image_file") is False
     assert image_filename.endswith(".png") is True
+
+
+def test_imageitemfieldsform_initial():
+    """
+    Form should have the HTML fields and form medias as expected.
+    """
+    form = ImageItemFieldsForm({})
+
+    assert str(form["mediafile"]).startswith("<div class=\"fileinputbutton\">") is True
+    assert str(form["image"]).startswith("<div class=\"fileinputbutton\">") is True
+
+    assert form.media._css_lists == [
+        {},
+        {"all": ("smart_image/css/fileinputbutton.css",)},
+    ]
+    assert form.media._js_lists == [
+        [],
+        ("smart_image/js/fileinputbutton.js",),
+    ]
 
 
 def test_imageitemfieldsform_empty():
@@ -128,8 +163,8 @@ def test_imageitemfieldsform_success():
     form = ImageItemFieldsForm({
         "title": "foo",
     }, {
-        "media": SimpleUploadedFile(
-            "media.gif",
+        "mediafile": SimpleUploadedFile(
+            "mediafile.gif",
             DUMMY_GIF_BYTES,
             content_type="image/gif"
         ),
@@ -140,8 +175,8 @@ def test_imageitemfieldsform_success():
         ),
     })
 
-    assert str(form["media"]).startswith('<div class="fileinputbutton">') is True
-    assert str(form["image"]).startswith('<div class="fileinputbutton">') is True
+    assert str(form["mediafile"]).startswith("<div class=\"fileinputbutton\">") is True
+    assert str(form["image"]).startswith("<div class=\"fileinputbutton\">") is True
 
     assert form.is_valid() is True
     assert form.errors.as_data() == {}

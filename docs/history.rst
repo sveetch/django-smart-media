@@ -12,6 +12,14 @@ Version 0.3.0 - Unreleased
   close #9;
 * Removed last jQuery usage from Javascript code so it is full vanilla Javascript and
   it is compatible anywhere, close #1;
+* Changed field name ``media`` to ``mediafile`` in model and forms from sample
+  application since ``media`` is an used form attribute to get form medias;
+* Added a view in sample application just to render form ``ImageItemFieldsForm``
+  without model;
+* Added Tutorial document, close #6;
+* Added ``SmartAdminMixin`` to use instead of ``SmartModelAdmin`` when model admin to
+  inherit from another subclass of ``ModelAdmin`` close #11;
+
 
 Version 0.2.2 - 2023/04/04
 --------------------------

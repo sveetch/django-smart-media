@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "media",
+                    "mediafile",
                     models.FileField(
                         blank=True,
                         default=None,

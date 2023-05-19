@@ -14,7 +14,7 @@ from sandbox.sample.views import ImageItemDetailView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="sample/index.html"), name="index"),
-    path("<int:imageitem_pk>/", ImageItemDetailView.as_view(), name="imageitem-detail"),
+    path("", include('sandbox.sample.urls')),
 ]
 
 # This is only needed when using runserver with settings "DEBUG" enabled

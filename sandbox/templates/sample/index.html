@@ -1,7 +1,20 @@
 {% extends "skeleton.html" %}
-
+{% block header-title %}{{ block.super }} - Index{% endblock header-title %}
 {% block content %}
 <div>
     <h1>Sample</h1>
+
+    <ul>
+        <li>
+            <a href="{% url 'admin:sample_imageitem_changelist' %}">
+                ImageItem model admin
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'sample:imageitem-form' %}">
+                Form without model
+            </a>
+        </li>
+    </ul>
 </div>
 {% endblock content %}

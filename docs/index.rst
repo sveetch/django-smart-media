@@ -11,6 +11,7 @@ User’s Guide
 
    install.rst
    references.rst
+   tutorials.rst
 
 
 Developer’s Guide

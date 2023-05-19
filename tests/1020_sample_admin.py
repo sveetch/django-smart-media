@@ -22,7 +22,7 @@ def test_imageitem_admin_add(db, admin_client):
     assert len(cover_field) == 1
     assert cover_field[0].get("class").split() == ["fileinputbutton"]
 
-    media_field = dom.find("#imageitem_form .field-media .fileinputbutton")
+    media_field = dom.find("#imageitem_form .field-mediafile .fileinputbutton")
     assert len(media_field) == 1
     assert media_field[0].get("class").split() == ["fileinputbutton"]
 
@@ -51,7 +51,7 @@ def test_imageitem_admin_change(db, admin_client):
         "fileinputbutton", "fileinputbutton--has-preview", "fileinputbutton--clearable",
     ]
 
-    media_field = dom.find("#imageitem_form .field-media .fileinputbutton")
+    media_field = dom.find("#imageitem_form .field-mediafile .fileinputbutton")
     assert len(media_field) == 1
     assert media_field[0].get("class").split() == [
         "fileinputbutton", "fileinputbutton--has-preview", "fileinputbutton--clearable",
