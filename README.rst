@@ -26,16 +26,14 @@ Concretely this contains:
 * Form widgets to build HTML for a ``FileField`` either with or without clearable
   mode. Both mode have a version to include needed layout assets (CSS and Javascript)
   and another one without assets;
+* Form fields which already set a "smart" widget;
 * Templates to build the widgets HTML;
 * CSS and Javascript for the widget layout;
-* Form fields which already set a "smart" widget;
 * Field validator;
 * Model signals to purge stale files;
 * Model field with all "smart" features;
-* A template tag to make a thumbnail that can be used either in the form for preview
-  or to be used in frontend for content thumbnail. By default, the thumbnail is
-  made in the original content format. Also not than a SVG cannot be converted to a
-  Bitmap and vice versa;
+* A template tag to make thumbnail safely with SVG image (original SVG is just used
+  without Sorl raising issue for a non bitmap image);
 * Some helpers to ease some specific implementations;
 
 Although this can work with ``ImageField``, SVG support will only work with

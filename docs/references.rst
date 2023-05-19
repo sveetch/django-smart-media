@@ -27,8 +27,10 @@ Widgets are just about HTML and layout, nothing more. There are different widget
 the one which fullfil your needs but to know ``ClearableFileInputButton`` is the most
 featured one.
 
-Commonly you will not use the ``***Base`` ones except in some context where you need to
-load stylesheets and Javascript assets on your own.
+The base versions does not include widget stylesheet and Javascript assets so you can
+include them yourself. This is helpful in some specific situations when you want to
+make layout integration yourself but commonly you will prefer the non-base widgets.
+
 
 .. automodule:: smart_media.widgets
    :members:

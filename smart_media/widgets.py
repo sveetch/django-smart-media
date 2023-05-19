@@ -5,10 +5,9 @@ class FileInputButtonBase(FileInput):
     """
     A simple FileInput override to use a custom template.
 
-    The base version does not include the required medias so you can include
-    them yourself in your form controler, this is a good idea in some
-    environment like DjangoCMS which needs to use a lot of ``!important`` marks
-    to override the admin stylesheets and is not included from this widget stylesheets.
+    The custom template is located at ``smart_image/fileinputbutton_basic.html``, you
+    may override it in your project if needed, but mind it is global to all SmartMedia
+    widgets.
 
     Default behavior if no ``class`` attribute is given is to apply the CSS
     classname ``fileinputbutton__input`` to the input.
@@ -56,6 +55,19 @@ class FileInputButton(FileInputButtonBase):
     """
     ``FileInputButtonBase`` version which includes the required assets to customize
     its layout and turn the file input as a button.
+
+    This widget will define a stylesheet and a Javascript asset to load as
+    `form medias <https://docs.djangoproject.com/en/4.2/topics/forms/media/>`_, this
+    automatically done from admin but you will probably have to load them on your own
+    in a custom form.
+
+    * Stylesheet is located at ``smart_image/css/fileinputbutton.css`` (relative to
+      static directory);
+    * Javascript is located at ``smart_image/js/fileinputbutton.js`` (relative to
+      static directory);
+
+    You can retrieve these assets sources in repository, note than the CSS is built
+    from a Sass source you may copy into your project Sass sources.
     """
     class Media:
         css = {

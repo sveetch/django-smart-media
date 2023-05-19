@@ -19,6 +19,7 @@ Version 0.3.0 - Unreleased
 * Added Tutorial document, close #6;
 * Added ``SmartAdminMixin`` to use instead of ``SmartModelAdmin`` when model admin to
   inherit from another subclass of ``ModelAdmin`` close #11;
+* Improved references document;
 
 
 Version 0.2.2 - 2023/04/04
