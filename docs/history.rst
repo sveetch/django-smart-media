@@ -4,9 +4,11 @@
 History
 =======
 
-Version 0.3.0 - Unreleased
+Version 0.3.0 - 2023/04/04
 --------------------------
 
+* Added support for Django 4.2;
+* This will be the last version to support Django 3.2;
 * Added missing link to Sorl documentation in tag docstring, close #5;
 * Fixed invisible thumb for SVG file in preview from ``FileInputButtonBase`` widget,
   close #9;
@@ -48,7 +50,7 @@ Version 0.2.0 - 2023/01/11
 * Finished test coverage;
 
 
-Version 0.1.0 - Unreleased
+Version 0.1.0 - 2022/12/29
 --------------------------
 
 First commit.
