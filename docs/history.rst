@@ -7,8 +7,8 @@ History
 Version 0.3.1 - Unreleased
 --------------------------
 
-A minor version only to update ``.readthedocs.yml`` file to follow service deprecations
-changes.
+* Updated ``.readthedocs.yml`` file to follow service deprecations changes;
+* Added a warning about purge signals in documentation;
 
 
 Version 0.3.0 - 2023/04/04
