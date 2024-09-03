@@ -10,11 +10,11 @@ A suit of tools to use a FileField to upload image with light SVG support, inclu
 thumbnail preview in field and a template tag around `sorl-thumbnail`_ library.
 
 
-Dependancies
+Dependencies
 ************
 
-* `Python`_>=3.8;
-* `Django`_>=3.2,<4.2;
+* `Python`_>=3.9;
+* `Django`_>=4.0,<5.1;
 * `sorl-thumbnail`_>=12.9.0;
 
 

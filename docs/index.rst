@@ -3,8 +3,8 @@
 .. include:: ../README.rst
 
 
-User’s Guide
-************
+Contents
+********
 
 .. toctree::
    :maxdepth: 3
@@ -14,7 +14,7 @@ User’s Guide
    tutorials.rst
 
 
-Developer’s Guide
+About the project
 *****************
 
 .. toctree::
