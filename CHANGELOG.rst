@@ -2,6 +2,15 @@
 Changelog
 =========
 
+Version 0.4.0 - Unreleased
+--------------------------
+
+* Removed support for Django<4.0;
+* Added support for Django 5.0;
+* Storage class usage has been adapted to ensure compatibility for Django from 4.0 to
+  5.0;
+
+
 Version 0.3.1 - 2023/08/18
 --------------------------
 
