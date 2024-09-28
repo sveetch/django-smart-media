@@ -109,7 +109,7 @@ install: venv create-var-dirs
 	@echo ""
 	@echo "==== Install everything for development ===="
 	@echo ""
-	$(PIP) install -e .[dev,frontend,quality,doc]
+	$(PIP) install -e .[dev,frontend,quality,doc,doc-live,release]
 	${MAKE} migrate
 .PHONY: install
 
@@ -117,7 +117,7 @@ migrations:
 	@echo ""
 	@echo "==== Making application migrations for application ===="
 	@echo ""
-	$(DJANGO_MANAGE) makemigrations $(APPLICATION_NAME)
+	$(DJANGO_MANAGE) makemigrations $(APPLICATION_NAME) sample
 .PHONY: migrations
 
 migrate:

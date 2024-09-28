@@ -9,6 +9,10 @@ Version 0.4.0 - Unreleased
 * Added support for Django 5.0;
 * Storage class usage has been adapted to ensure compatibility for Django from 4.0 to
   5.0;
+* Added a minimal version to every requirements to help Pip to resolve packages
+  quicker;
+* Added a logo;
+* Upgraded documentation to Furo theme;
 
 
 Version 0.3.1 - 2023/08/18

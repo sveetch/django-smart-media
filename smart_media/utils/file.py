@@ -31,7 +31,7 @@ def uploadto_unique(dirname, instance, filename):
     So an usage like this: ::
 
         def file_uploadto(instance, filename):
-            return uploadto_unique("ping/%Y/%m/%d", instance, filename))
+            return uploadto_unique("ping/%Y/%m/%d", instance, filename)
 
         class Foo(models.Model):
             file = models.FileField("A file", upload_to=file_uploadto)

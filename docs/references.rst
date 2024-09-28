@@ -64,17 +64,17 @@ They are on your own to implement in your models still it is very easy to do and
 not require any migrations.
 
 .. Warning::
-    Purge signals can be harmful on very specific case if you blindly implement them
+    Purge signals can be harmful on specific cases if you blindly implement them
     without thinking about your application behaviors.
 
     For example, it is known that plugins from DjangoCMS are cloned on each save, for
-    this reason the signal ``auto_purge_files_on_delete`` must not be connected to
-    a DjangoCMS plugin model because it deletes cloned object files without copying them
-    first for new clone. It results on plugin objects keeping references to files that
-    have been removed by the "on delete" purge signal (since cloning imply to copy then
-    delete).
+    this reason signals must not be connected to a DjangoCMS plugin model because
+    it deletes cloned object files without copying them first on new cloned object. It
+    results on plugin objects keeping references to files that
+    have been removed by the "on delete" or "on change" purge signals.
 
-    You need to think if your models are doing post processing saves on object.
+    Globally you will need to think if your models are doing post processing saves
+    on object before connecting to signals.
 
 .. automodule:: smart_media.signals
    :members:
