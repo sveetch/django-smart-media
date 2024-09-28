@@ -2,7 +2,7 @@
 Changelog
 =========
 
-Version 0.4.0 - Unreleased
+Version 0.4.0 - 2024/09/28
 --------------------------
 
 .. Note::
