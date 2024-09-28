@@ -2,6 +2,13 @@
 Changelog
 =========
 
+Version 0.4.1 - 2024/09/28
+--------------------------
+
+A minor release just to fix issue with Read the Docs configuration that failed to
+build.
+
+
 Version 0.4.0 - 2024/09/28
 --------------------------
 
