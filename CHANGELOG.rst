@@ -13,6 +13,7 @@ Version 0.4.0 - Unreleased
   quicker;
 * Added a logo;
 * Upgraded documentation to Furo theme;
+* Updated script to freeze local dependencies;
 
 
 Version 0.3.1 - 2023/08/18

@@ -213,7 +213,7 @@ freeze-dependencies:
 	@echo ""
 	@echo "==== Freeze dependencies versions ===="
 	@echo ""
-	$(PYTHON_BIN) freezer.py
+	$(PYTHON_BIN) freezer.py ${PACKAGE_NAME} --destination=frozen.txt
 .PHONY: freeze-dependencies
 
 build-package:
