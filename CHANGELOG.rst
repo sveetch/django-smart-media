@@ -5,8 +5,14 @@ Changelog
 Version 0.4.0 - Unreleased
 --------------------------
 
+.. Note::
+    If you are still using Django 4.0 or 4.1 you will need to pin sorl-thumbnail to
+    ``sorl-thumbnail==12.10.0`` in your project requirements because last Sorl release
+    have dropped support of Django<4.2 and Smart media does not pin it (since it is
+    compatible with every versions).
+
 * Removed support for Django<4.0;
-* Added support for Django 5.0;
+* Added support for Django 5.0 and 5.1;
 * Storage class usage has been adapted to ensure compatibility for Django from 4.0 to
   5.0;
 * Added a minimal version to every requirements to help Pip to resolve packages
