@@ -4,6 +4,23 @@
 History
 =======
 
+Version 0.3.2 - 2024/09/30
+--------------------------
+
+A minor fix release to ensure compatibility with Sorl-thumbnail with Django<4.2.
+
+For explanation, Sorl-thumbnail since v12.11.0 has dropped support for Django<4.2
+because of Django storage change. But Smart media<0.4.0 only supports Django<4.2, this
+could break installation.
+
+You can safely upgrade to this release if your project is still Django<4.2.
+
+Or you could also pin Sorl-thumbnail in your project requirements with the following
+line: ::
+
+    sorl-thumbnail>=12.9.0,<12.11.0
+
+
 Version 0.3.1 - 2023/08/18
 --------------------------
 
