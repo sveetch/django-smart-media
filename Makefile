@@ -9,7 +9,7 @@ PIP=$(VENV_PATH)/bin/pip
 BOUSSOLE=$(VENV_PATH)/bin/boussole
 TOX=$(VENV_PATH)/bin/tox
 TWINE=$(VENV_PATH)/bin/twine
-DJANGO_MANAGE=$(VENV_PATH)/bin/python sandbox/manage.py
+DJANGO_MANAGE=$(PYTHON_BIN) $(SANDBOX_DIR)/manage.py
 FLAKE=$(VENV_PATH)/bin/flake8
 PYTEST=$(VENV_PATH)/bin/pytest
 SPHINX_RELOAD=$(PYTHON_BIN) sphinx_reload.py
@@ -92,9 +92,6 @@ venv:
 	@echo "==== Install virtual environment ===="
 	@echo ""
 	virtualenv -p $(PYTHON_INTERPRETER) $(VENV_PATH)
-	# This is required for those ones using old distribution
-	$(PIP) install --upgrade pip
-	$(PIP) install --upgrade setuptools
 .PHONY: venv
 
 create-var-dirs:

@@ -13,8 +13,8 @@ thumbnail preview in field and a template tag around `sorl-thumbnail`_ library.
 Dependencies
 ************
 
-* `Python`_>=3.9;
-* `Django`_>=4.0,<5.1;
+* `Python`_>=3.10;
+* `Django`_>=4.2;
 * `sorl-thumbnail`_>=12.9.0;
 
 

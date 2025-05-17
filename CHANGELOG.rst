@@ -2,6 +2,14 @@
 Changelog
 =========
 
+Development
+-----------
+
+* Removed support for Python 3.9;
+* Add support for Django 5.2;
+* Removed support for Django 4.0 and 4.1;
+
+
 Version 0.4.1 - 2024/09/28
 --------------------------
 
