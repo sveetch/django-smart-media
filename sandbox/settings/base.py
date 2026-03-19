@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).parents[2]
 # Django project
 PROJECT_PATH = BASE_DIR / "sandbox"
 
-# Variable content directory, mostly use for local db and media storage in
+# Variable content directory, mostly used for local db and media storage in
 # deployed environments
 VAR_PATH = BASE_DIR / "var"
 
@@ -61,10 +61,6 @@ SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
-USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
@@ -145,9 +141,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.staticfiles",
     "django.forms",
-    "sorl.thumbnail",
-    "smart_media.apps.smart_mediaConfig",
-    "sandbox.sample",
 ]
 
 LOGIN_REDIRECT_URL = "/"
@@ -159,6 +152,20 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
 """
+Sorl
+"""
+INSTALLED_APPS.append("sorl.thumbnail")
+
+
+"""
 SPECIFIC BASE APPLICATIONS SETTINGS BELOW
 """
 from smart_media.settings import *
+
+INSTALLED_APPS.append("smart_media")
+
+
+"""
+Sandbox demonstration app
+"""
+INSTALLED_APPS.append("sandbox.sample")
