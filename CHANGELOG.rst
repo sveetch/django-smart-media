@@ -11,6 +11,12 @@ Development
 * Removed support for Django<5.2;
 * Added support for Python 3.12 and 3.13;
 * Added support for Django 6.0;
+* Removed 'Boussole' package from development requirements;
+* Added frontend with Node.js and Bootstrap 5.3.8;
+
+.. Todo::
+    * Use bootstrap with basic layout in sandbox;
+    * Build frontend application CSS into application static directory (not in sandbox);
 
 
 Version 0.5.0 - 2025/05/17

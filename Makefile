@@ -52,12 +52,18 @@ help:
 	@echo "  migrations          -- to create new migrations for application after changes"
 	@echo "  migrate             -- to apply demo database migrations"
 	@echo "  superuser           -- to create a superuser for Django admin"
-	@echo ""
+	@echo
 	@echo "  Frontend commands"
 	@echo "  ================="
 	@echo
-	@echo "  css                 -- to build stylesheets with Boussole from Sass sources"
-	@echo "  watch-sass          -- to launch Boussole watch mode to rebuild stylesheets from Sass sources"
+	@echo "  css                 -- to build uncompressed CSS from Sass sources"
+	@echo "  watch-css           -- to watch for Sass changes to rebuild CSS"
+	@echo "  css-prod            -- to build compressed and minified CSS from Sass sources"
+	@echo "  js                  -- to build uncompressed Javascript from sources"
+	@echo "  watch-js            -- to watch for Javascript sources changes to rebuild assets"
+	@echo "  js-prod             -- to build minified JS assets"
+	@echo "  frontend            -- to build uncompressed frontend assets (CSS, JS, etc..)"
+	@echo "  frontend-prod       -- to build minified frontend assets (CSS, JS, etc..)"
 	@echo
 	@echo "  Documentation"
 	@echo "  ============="
@@ -92,10 +98,11 @@ clean-pycache:
 	find . -name "*\.pyc"|xargs rm -f
 .PHONY: clean-pycache
 
-clean-install:
+clean-backend-install:
 	@echo ""
-	@echo "==== Clear installation ===="
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Clear installation <---$(FORMATRESET)\n"
 	@echo ""
+	rm -Rf dist
 	rm -Rf $(VENV_PATH)
 	rm -Rf $(PACKAGE_SLUG).egg-info
 .PHONY: clean-install
@@ -114,15 +121,24 @@ clean-doc:
 	rm -Rf docs/_build
 .PHONY: clean-doc
 
-clean: clean-var clean-doc clean-install clean-pycache
-.PHONY: clean
+clean-frontend-build:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Cleaning frontend built files <---$(FORMATRESET)\n"
+	@echo ""
+	rm -Rf $(STATICFILES_DIR)/webpack-stats.json
+	rm -Rf $(STATICFILES_DIR)/css
+	rm -Rf $(STATICFILES_DIR)/js
+.PHONY: clean-frontend-build
 
-venv:
+clean-frontend-install:
 	@echo ""
-	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Install virtual environment <---$(FORMATRESET)\n"
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Cleaning frontend install <---$(FORMATRESET)\n"
 	@echo ""
-	virtualenv -p $(PYTHON_INTERPRETER) $(VENV_PATH)
-.PHONY: venv
+	rm -Rf $(FRONTEND_DIR)/node_modules
+.PHONY: clean-frontend-install
+
+clean: clean-var clean-doc clean-backend-install clean-frontend-install clean-frontend-build clean-pycache
+.PHONY: clean
 
 create-var-dirs:
 	@mkdir -p var/db
@@ -132,12 +148,38 @@ create-var-dirs:
 	@mkdir -p $(STATICFILES_DIR)/fonts
 .PHONY: create-var-dirs
 
-install: venv create-var-dirs
+venv:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Install virtual environment <---$(FORMATRESET)\n"
+	@echo ""
+	virtualenv -p $(PYTHON_INTERPRETER) $(VENV_PATH)
+.PHONY: venv
+
+install-backend:
 	@echo ""
 	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Install everything for development <---$(FORMATRESET)\n"
 	@echo ""
-	$(PIP_BIN) install -e .[dev,frontend,quality,doc,doc-live,release]
-	${MAKE} migrate
+	$(PIP_BIN) install -e .[dev,quality,doc,doc-live,release]
+.PHONY: install-backend
+
+install-icon-font:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Copying bootstrap-icons to staticfiles directory <---$(FORMATRESET)\n"
+	@echo ""
+	rm -Rf $(STATICFILES_DIR)/fonts/icons
+	mkdir -p $(STATICFILES_DIR)/fonts
+	cp -r $(FRONTEND_DIR)/node_modules/bootstrap-icons/font/fonts $(STATICFILES_DIR)/fonts/icons
+.PHONY: install-icon-font
+
+install-frontend:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Installing frontend requirements <---$(FORMATRESET)\n"
+	@echo ""
+	cd $(FRONTEND_DIR) && npm install
+	${MAKE} install-icon-font
+.PHONY: install-frontend
+
+install: venv create-var-dirs install-backend migrate install-frontend frontend
 .PHONY: install
 
 migrations:
@@ -170,17 +212,51 @@ run:
 
 css:
 	@echo ""
-	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building CSS <---$(FORMATRESET)\n"
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building CSS for development environment <---$(FORMATRESET)\n"
 	@echo ""
-	$(BOUSSOLE_BIN) compile --config sass/boussole.json
+	cd $(FRONTEND_DIR) && npm run-script css
 .PHONY: css
 
 watch-sass:
 	@echo ""
 	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Watching Sass sources for development environment <---$(FORMATRESET)\n"
 	@echo ""
-	$(BOUSSOLE_BIN) watch --config sass/boussole.json
+	cd $(FRONTEND_DIR) && npm run-script watch-css
 .PHONY: watch-sass
+
+css-prod:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building CSS for production environment <---$(FORMATRESET)\n"
+	@echo ""
+	cd $(FRONTEND_DIR) && npm run-script css-prod
+.PHONY: css-prod
+
+js:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building distributed Javascript for development environment <---$(FORMATRESET)\n"
+	@echo ""
+	cd $(FRONTEND_DIR) && npm run js
+.PHONY: js
+
+watch-js:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Watching Javascript sources for development environment <---$(FORMATRESET)\n"
+	@echo ""
+	cd $(FRONTEND_DIR) && npm run watch-js
+.PHONY: watch-js
+
+js-prod:
+	@echo ""
+	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building distributed Javascript for production environment <---$(FORMATRESET)\n"
+	@echo ""
+	cd $(FRONTEND_DIR) && npm run js-prod
+.PHONY: js-prod
+
+frontend: css js
+.PHONY: frontend
+
+frontend-prod: css-prod js-prod
+.PHONY: frontend-prod
 
 docs:
 	@echo ""

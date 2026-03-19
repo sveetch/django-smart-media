@@ -1,0 +1,29 @@
+///
+/// Site setting variables
+///
+/// This must be loaded before Bootstrap variables
+///
+
+// One pixel shortcut
+$onepixel: 0.0625rem; // For 1rem = 16px
+// Debug line to possibly calibrate it again when default Bootstrap base size has been
+// changed
+// @debug "One pixel is " + rem-calc(1px);
+
+/// Define the main base font size (this need to correspond to Bootstrap '$font-size-base'
+///
+/// @type Number in pixel unit
+///
+$bb-rem-base-size: 16px;
+
+/// Define images directory used by `image-url()` function.
+///
+/// @type String
+///
+$bb-image-directory: "../images/" !default;
+
+/// Define fonts directory used by `font-url()` function.
+///
+/// @type String
+///
+$bb-font-directory: "../fonts/" !default;

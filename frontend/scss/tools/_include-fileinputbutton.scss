@@ -1,6 +1,3 @@
-@import '../tools/flexbox';
-@import '../tools/rem';
-
 //
 // Mixin for base simple fileinputbutton layout
 //
@@ -116,7 +113,7 @@
 
         #{$selector}__initial {
             position: relative $important-mark;
-            @include sv-flex(0, 0, auto);
+            @include bb-flex(0, 0, auto);
         }
 
         #{$selector}__preview {
@@ -141,7 +138,7 @@
         }
 
         #{$selector}__controls {
-            @include sv-flex(1, 0, auto);
+            @include bb-flex(1, 0, auto);
             display: flex $important-mark;
             flex-wrap: wrap $important-mark;
             flex-direction: column $important-mark;
@@ -173,7 +170,7 @@
 
     &#{$selector}--clearable {
         #{$selector}__clear {
-            @include sv-flex(1, 0, auto);
+            @include bb-flex(1, 0, auto);
             display: flex $important-mark;
             position: relative $important-mark;
             width: 100% $important-mark;
@@ -198,13 +195,13 @@
             }
 
             input {
-                @include sv-flex(0, 0, auto);
+                @include bb-flex(0, 0, auto);
                 top: 0 $important-mark;
                 margin-right: 0.5rem $important-mark;
             }
 
             label {
-                @include sv-flex(0, 0, auto);
+                @include bb-flex(0, 0, auto);
                 color: $base-color $important-mark;
                 margin: 0 $important-mark;
                 line-height: 1.1 $important-mark;

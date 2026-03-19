@@ -1,6 +1,13 @@
 //
 // Base stylesheet for the fileinputbutton widget
 //
+
+// Load every site settings
+@import "./tools/functions";
+@import "./settings/colors";
+@import "./settings/site";
+
+@import "./tools/flexbox";
 @import './tools/include-fileinputbutton';
 
 
