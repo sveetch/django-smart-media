@@ -13,9 +13,9 @@ Development
 * Added support for Django 6.0;
 * Removed 'Boussole' package from development requirements;
 * Added frontend with Node.js and Bootstrap 5.3.8;
+* Integrated usage of new frontend in sandbox;
 
 .. Todo::
-    * Use bootstrap with basic layout in sandbox;
     * Build frontend application CSS into application static directory (not in sandbox);
 
 

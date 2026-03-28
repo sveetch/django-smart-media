@@ -2,29 +2,35 @@
 {% load smart_image %}
 {% block header-title %}{{ block.super }} - {{ imageitem_object.title }}{% endblock header-title %}
 
-{% block content %}
+{% block base_content %}
 <div>
     <h1>{{ imageitem_object.title }}</h1>
 
-    {% media_thumb imageitem_object.image "60x60" crop="center" as image_thumb %}
-    <p id="image">
-        <a href="{{ imageitem_object.image.url }}">
-            <img src="{{ image_thumb.url }}" alt="">
-        </a>
-    </p>
+    {% if imageitem_object.image %}
+        {% media_thumb imageitem_object.image "60x60" crop="center" as image_thumb %}
+        <p id="image">
+            <a href="{{ imageitem_object.image.url }}">
+                <img src="{{ image_thumb.url }}" alt="">
+            </a>
+        </p>
+    {% endif %}
 
-    {% media_thumb imageitem_object.mediafile "60x60" crop="center" as mediafield_thumb %}
-    <p id="mediafile">
-        <a href="{{ imageitem_object.mediafile.url }}">
-            <img src="{{ mediafield_thumb.url }}" alt="">
-        </a>
-    </p>
+    {% if imageitem_object.mediafile %}
+        {% media_thumb imageitem_object.mediafile "60x60" crop="center" as mediafield_thumb %}
+        <p id="mediafile">
+            <a href="{{ imageitem_object.mediafile.url }}">
+                <img src="{{ mediafield_thumb.url }}" alt="">
+            </a>
+        </p>
+    {% endif %}
 
-    {% media_thumb imageitem_object.cover "60x60" crop="center" as cover_thumb %}
-    <p id="cover">
-        <a href="{{ imageitem_object.cover.url }}">
-            <img src="{{ cover_thumb.url }}" alt="">
-        </a>
-    </p>
+    {% if imageitem_object.cover %}
+        {% media_thumb imageitem_object.cover "60x60" crop="center" as cover_thumb %}
+        <p id="cover">
+            <a href="{{ imageitem_object.cover.url }}">
+                <img src="{{ cover_thumb.url }}" alt="">
+            </a>
+        </p>
+    {% endif %}
 </div>
-{% endblock content %}
+{% endblock base_content %}
