@@ -14,9 +14,8 @@ Development
 * Removed 'Boussole' package from development requirements;
 * Added frontend with Node.js and Bootstrap 5.3.8;
 * Integrated usage of new frontend in sandbox;
-
-.. Todo::
-    * Build frontend application CSS into application static directory (not in sandbox);
+* Updated Sass build config for distinct task for both main and fileinputbutton
+  stylesheets so the first is destinated to sandbox and the latter is for app statics;
 
 
 Version 0.5.0 - 2025/05/17

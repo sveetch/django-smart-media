@@ -1,3 +1,5 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+/* stylelint-enable declaration-block-no-redundant-longhand-properties */
 .fileinputbutton .fileinputbutton__input {
   position: absolute;
   margin: 0;
@@ -11,7 +13,6 @@
   overflow: hidden;
   z-index: -1;
 }
-
 .fileinputbutton .fileinputbutton__input + label {
   display: inline-block;
   max-width: 10rem;
@@ -27,16 +28,13 @@
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
 }
-
 .fileinputbutton .fileinputbutton__input + label > * {
   color: inherit;
 }
-
 .fileinputbutton .fileinputbutton__input + label:hover {
   color: #29303b;
   background-color: #eceff1;
 }
-
 .fileinputbutton .fileinputbutton__input + label svg {
   width: 1rem;
   height: 1rem;
@@ -45,11 +43,9 @@
   vertical-align: middle;
   fill: currentColor;
 }
-
 .fileinputbutton .fileinputbutton__input + label::before, .fileinputbutton .fileinputbutton__input + label::after {
   display: none;
 }
-
 .fileinputbutton .fileinputbutton__input:focus + label, .fileinputbutton .fileinputbutton__input.has-focus + label {
   color: #29303b;
   background-color: #eceff1;
@@ -57,25 +53,21 @@
   outline: 0.0625rem dotted #29303b;
   outline: -webkit-focus-ring-color auto 0.3125rem;
 }
-
 .fileinputbutton .fileinputbutton__input.has-selection + label {
   color: #f1f1f2;
   background-color: #686f7a;
   border: 0.0625rem solid #686f7a;
 }
-
 .fileinputbutton.fileinputbutton--has-preview {
   display: flex;
   flex-wrap: wrap;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__initial {
   position: relative;
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: auto;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__preview a {
   display: block;
   padding: 0.4rem;
@@ -85,16 +77,13 @@
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__preview a img {
   display: inline-block;
   margin: 0 auto;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__preview a img[src$=".svg"] {
   width: 3.75rem;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__controls {
   flex-grow: 1;
   flex-shrink: 0;
@@ -105,12 +94,10 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-
 .fileinputbutton.fileinputbutton--has-preview .fileinputbutton__input + label {
   max-width: 15rem;
   margin: 0 0 0 0.3rem !important;
 }
-
 .fileinputbutton.fileinputbutton--clearable .fileinputbutton__clear {
   flex-grow: 1;
   flex-shrink: 0;
@@ -127,7 +114,6 @@
   border-left: 0;
   border-top-right-radius: 0.2rem;
 }
-
 .fileinputbutton.fileinputbutton--clearable .fileinputbutton__clear::before {
   content: "";
   display: block;
@@ -138,7 +124,6 @@
   bottom: 0;
   background: #f1f1f2;
 }
-
 .fileinputbutton.fileinputbutton--clearable .fileinputbutton__clear input {
   flex-grow: 0;
   flex-shrink: 0;
@@ -146,7 +131,6 @@
   top: 0;
   margin-right: 0.5rem;
 }
-
 .fileinputbutton.fileinputbutton--clearable .fileinputbutton__clear label {
   flex-grow: 0;
   flex-shrink: 0;
@@ -157,7 +141,8 @@
   height: auto;
   font-size: 0.9rem;
 }
-
 .fileinputbutton.fileinputbutton--clearable .fileinputbutton__input + label {
   margin: 0.3rem 0 0 0.3rem !important;
 }
+
+/*# sourceMappingURL=fileinputbutton.css.map */

@@ -214,7 +214,8 @@ css:
 	@echo ""
 	@printf "$(FORMATBLUE)$(FORMATBOLD)---> Building CSS for development environment <---$(FORMATRESET)\n"
 	@echo ""
-	cd $(FRONTEND_DIR) && npm run-script css
+	cd $(FRONTEND_DIR) && npm run-script css-main
+	cd $(FRONTEND_DIR) && npm run-script css-bundle
 .PHONY: css
 
 watch-sass:

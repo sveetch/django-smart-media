@@ -5,7 +5,8 @@
     "author": "David Thenon <sveetch@gmail.com>",
     "private": true,
     "scripts": {
-        "css": "sass --load-path=./node_modules --silence-deprecation=color-functions --silence-deprecation=global-builtin --silence-deprecation=import --silence-deprecation=if-function ./scss/:../sandbox/static-sources/css/",
+        "css-main": "sass --load-path=./node_modules --silence-deprecation=color-functions --silence-deprecation=global-builtin --silence-deprecation=import --silence-deprecation=if-function ./scss/main.scss:../sandbox/static-sources/css/main.css",
+        "css-bundle": "sass --load-path=./node_modules --silence-deprecation=color-functions --silence-deprecation=global-builtin --silence-deprecation=import --silence-deprecation=if-function ./scss/fileinputbutton.scss:../smart_media/static/smart_image/css/fileinputbutton.css",
         "css-prod": "sass --style compressed --load-path=./node_modules ./scss/:../sandbox/static-sources/css/",
         "watch-css": "nodemon --watch scss/ --ext scss --exec \"npm run-script css\"",
         "js": "webpack --mode development --progress",
