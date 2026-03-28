@@ -2,15 +2,15 @@
 Changelog
 =========
 
-Development
------------
+Version 0.6.0 - 2026/03/28
+--------------------------
 
-* Updated Makefile;
-* Renovated package configuration;
 * Removed support for Python<3.10;
 * Removed support for Django<5.2;
 * Added support for Python 3.12 and 3.13;
 * Added support for Django 6.0;
+* Updated Makefile;
+* Renovated package configuration;
 * Removed 'Boussole' package from development requirements;
 * Added frontend with Node.js and Bootstrap 5.3.8;
 * Integrated usage of new frontend in sandbox;
